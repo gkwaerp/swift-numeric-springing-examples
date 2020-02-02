@@ -17,6 +17,8 @@
 		04B065B123E73BEC00CF7E1B /* TranslateRotateSquashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B065B023E73BEC00CF7E1B /* TranslateRotateSquashViewController.swift */; };
 		04B065B423E7570800CF7E1B /* GridTranslationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B065B323E7570800CF7E1B /* GridTranslationViewController.swift */; };
 		04B065B623E75FC800CF7E1B /* FreeformTranslationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B065B523E75FC800CF7E1B /* FreeformTranslationViewController.swift */; };
+		04B065B823E7632800CF7E1B /* VerticalBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B065B723E7632800CF7E1B /* VerticalBarViewController.swift */; };
+		04B065BA23E7636100CF7E1B /* HorizontalBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B065B923E7636100CF7E1B /* HorizontalBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		04B065B023E73BEC00CF7E1B /* TranslateRotateSquashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateRotateSquashViewController.swift; sourceTree = "<group>"; };
 		04B065B323E7570800CF7E1B /* GridTranslationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTranslationViewController.swift; sourceTree = "<group>"; };
 		04B065B523E75FC800CF7E1B /* FreeformTranslationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeformTranslationViewController.swift; sourceTree = "<group>"; };
+		04B065B723E7632800CF7E1B /* VerticalBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalBarViewController.swift; sourceTree = "<group>"; };
+		04B065B923E7636100CF7E1B /* HorizontalBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,8 @@
 				04B065B023E73BEC00CF7E1B /* TranslateRotateSquashViewController.swift */,
 				04B065B323E7570800CF7E1B /* GridTranslationViewController.swift */,
 				04B065B523E75FC800CF7E1B /* FreeformTranslationViewController.swift */,
+				04B065B723E7632800CF7E1B /* VerticalBarViewController.swift */,
+				04B065B923E7636100CF7E1B /* HorizontalBarViewController.swift */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -167,7 +173,9 @@
 				04B065B123E73BEC00CF7E1B /* TranslateRotateSquashViewController.swift in Sources */,
 				04B0659A23E62A8E00CF7E1B /* TableViewController.swift in Sources */,
 				04B0659623E62A8E00CF7E1B /* AppDelegate.swift in Sources */,
+				04B065B823E7632800CF7E1B /* VerticalBarViewController.swift in Sources */,
 				04B065B423E7570800CF7E1B /* GridTranslationViewController.swift in Sources */,
+				04B065BA23E7636100CF7E1B /* HorizontalBarViewController.swift in Sources */,
 				04B0659823E62A8E00CF7E1B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

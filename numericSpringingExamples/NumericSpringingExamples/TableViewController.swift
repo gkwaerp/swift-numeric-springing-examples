@@ -13,6 +13,8 @@ class TableViewController: UIViewController {
         case translateRotateSquash
         case gridTranslation
         case freeformTranslation
+        case verticalBar
+        case horizontalBar
         
         var viewController: UIViewController {
             switch self {
@@ -22,6 +24,10 @@ class TableViewController: UIViewController {
                 return GridTranslationViewController()
             case .freeformTranslation:
                 return FreeformTranslationViewController()
+            case .verticalBar:
+                return VerticalBarViewController()
+            case .horizontalBar:
+                return HorizontalBarViewController()
             }
         }
         
@@ -33,6 +39,10 @@ class TableViewController: UIViewController {
                 return "Grid Translation"
             case .freeformTranslation:
                 return "Freeform Translation"
+            case .verticalBar:
+                return "Vertical Bar"
+            case .horizontalBar:
+                return "Horizontal Bar"
             }
         }
     }
