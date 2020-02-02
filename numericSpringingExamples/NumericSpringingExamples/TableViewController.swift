@@ -10,19 +10,19 @@ import UIKit
 
 class TableViewController: UIViewController {
     enum ExampleViewController: Int, CaseIterable {
-        case translateSquashRotate
+        case translateRotateSquash
         
         var viewController: UIViewController {
             switch self {
-            case .translateSquashRotate:
+            case .translateRotateSquash:
                 return TranslateRotateSquashViewController()
             }
         }
         
         var description: String {
             switch self {
-            case .translateSquashRotate:
-                return "Translate, Squash, Rotate"
+            case .translateRotateSquash:
+                return "Translate, Rotate, Squash"
             }
         }
     }
@@ -37,6 +37,13 @@ class TableViewController: UIViewController {
     private func configureTableView() {
         self.tableView.dataSource = self
         self.tableView.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let selectedIndexPath = self.tableView.indexPathForSelectedRow {
+            self.tableView.deselectRow(at: selectedIndexPath, animated: true)
+        }
     }
 }
 
@@ -54,7 +61,9 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let exampleVC = ExampleViewController(rawValue: indexPath.row)!.viewController
+        let example = ExampleViewController(rawValue: indexPath.row)!
+        let exampleVC = example.viewController
         self.navigationController?.pushViewController(exampleVC, animated: true)
+        exampleVC.title = example.description
     }
 }

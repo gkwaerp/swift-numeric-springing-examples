@@ -35,6 +35,7 @@ class TranslateRotateSquashViewController: UIViewController {
     
     private func configureUI() {
         self.view.backgroundColor = .systemBackground
+        self.title = "Translate, Rotate, Squash"
         
         let viewSize: CGFloat = 90
         
