@@ -19,6 +19,7 @@
 		04B065B623E75FC800CF7E1B /* FreeformTranslationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B065B523E75FC800CF7E1B /* FreeformTranslationViewController.swift */; };
 		04B065B823E7632800CF7E1B /* VerticalBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B065B723E7632800CF7E1B /* VerticalBarViewController.swift */; };
 		04B065BA23E7636100CF7E1B /* HorizontalBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B065B923E7636100CF7E1B /* HorizontalBarViewController.swift */; };
+		04C56B5523E7692A00B816D7 /* SceneKitRotationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C56B5423E7692A00B816D7 /* SceneKitRotationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		04B065B523E75FC800CF7E1B /* FreeformTranslationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeformTranslationViewController.swift; sourceTree = "<group>"; };
 		04B065B723E7632800CF7E1B /* VerticalBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalBarViewController.swift; sourceTree = "<group>"; };
 		04B065B923E7636100CF7E1B /* HorizontalBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalBarViewController.swift; sourceTree = "<group>"; };
+		04C56B5423E7692A00B816D7 /* SceneKitRotationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneKitRotationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				04B065B523E75FC800CF7E1B /* FreeformTranslationViewController.swift */,
 				04B065B723E7632800CF7E1B /* VerticalBarViewController.swift */,
 				04B065B923E7636100CF7E1B /* HorizontalBarViewController.swift */,
+				04C56B5423E7692A00B816D7 /* SceneKitRotationViewController.swift */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				04B065B823E7632800CF7E1B /* VerticalBarViewController.swift in Sources */,
 				04B065B423E7570800CF7E1B /* GridTranslationViewController.swift in Sources */,
 				04B065BA23E7636100CF7E1B /* HorizontalBarViewController.swift in Sources */,
+				04C56B5523E7692A00B816D7 /* SceneKitRotationViewController.swift in Sources */,
 				04B0659823E62A8E00CF7E1B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,6 +15,7 @@ class TableViewController: UIViewController {
         case freeformTranslation
         case verticalBar
         case horizontalBar
+        case sceneKitRotation
         
         var viewController: UIViewController {
             switch self {
@@ -28,6 +29,8 @@ class TableViewController: UIViewController {
                 return VerticalBarViewController()
             case .horizontalBar:
                 return HorizontalBarViewController()
+            case .sceneKitRotation:
+                return SceneKitRotationViewController()
             }
         }
         
@@ -43,6 +46,8 @@ class TableViewController: UIViewController {
                 return "Vertical Bar"
             case .horizontalBar:
                 return "Horizontal Bar"
+            case .sceneKitRotation:
+                return "SceneKit Rotation"
             }
         }
     }
