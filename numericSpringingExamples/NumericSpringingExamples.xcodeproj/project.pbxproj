@@ -15,6 +15,8 @@
 		04B065A223E62A9000CF7E1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B065A023E62A9000CF7E1B /* LaunchScreen.storyboard */; };
 		04B065AE23E62D7600CF7E1B /* NumericSpringing in Frameworks */ = {isa = PBXBuildFile; productRef = 04B065AD23E62D7600CF7E1B /* NumericSpringing */; };
 		04B065B123E73BEC00CF7E1B /* TranslateRotateSquashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B065B023E73BEC00CF7E1B /* TranslateRotateSquashViewController.swift */; };
+		04B065B423E7570800CF7E1B /* GridTranslationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B065B323E7570800CF7E1B /* GridTranslationViewController.swift */; };
+		04B065B623E75FC800CF7E1B /* FreeformTranslationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B065B523E75FC800CF7E1B /* FreeformTranslationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		04B065A123E62A9000CF7E1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04B065A323E62A9000CF7E1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04B065B023E73BEC00CF7E1B /* TranslateRotateSquashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateRotateSquashViewController.swift; sourceTree = "<group>"; };
+		04B065B323E7570800CF7E1B /* GridTranslationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTranslationViewController.swift; sourceTree = "<group>"; };
+		04B065B523E75FC800CF7E1B /* FreeformTranslationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeformTranslationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				04B065B023E73BEC00CF7E1B /* TranslateRotateSquashViewController.swift */,
+				04B065B323E7570800CF7E1B /* GridTranslationViewController.swift */,
+				04B065B523E75FC800CF7E1B /* FreeformTranslationViewController.swift */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -157,9 +163,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B065B623E75FC800CF7E1B /* FreeformTranslationViewController.swift in Sources */,
 				04B065B123E73BEC00CF7E1B /* TranslateRotateSquashViewController.swift in Sources */,
 				04B0659A23E62A8E00CF7E1B /* TableViewController.swift in Sources */,
 				04B0659623E62A8E00CF7E1B /* AppDelegate.swift in Sources */,
+				04B065B423E7570800CF7E1B /* GridTranslationViewController.swift in Sources */,
 				04B0659823E62A8E00CF7E1B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

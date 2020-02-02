@@ -11,11 +11,17 @@ import UIKit
 class TableViewController: UIViewController {
     enum ExampleViewController: Int, CaseIterable {
         case translateRotateSquash
+        case gridTranslation
+        case freeformTranslation
         
         var viewController: UIViewController {
             switch self {
             case .translateRotateSquash:
                 return TranslateRotateSquashViewController()
+            case .gridTranslation:
+                return GridTranslationViewController()
+            case .freeformTranslation:
+                return FreeformTranslationViewController()
             }
         }
         
@@ -23,6 +29,10 @@ class TableViewController: UIViewController {
             switch self {
             case .translateRotateSquash:
                 return "Translate, Rotate, Squash"
+            case .gridTranslation:
+                return "Grid Translation"
+            case .freeformTranslation:
+                return "Freeform Translation"
             }
         }
     }
