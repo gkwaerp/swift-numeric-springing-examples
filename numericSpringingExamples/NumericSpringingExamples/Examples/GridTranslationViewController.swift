@@ -75,9 +75,12 @@ class GridTranslationViewController: UIViewController {
     }
     
     private func createSpring() {
-        self.spring = .createBasicSpring(startValue: self.currentTargetPoint, animationClosure: { [weak self] (animationValue) in
-            self?.movingView.center = animationValue
-        })
+        self.spring = .createCustomSpring(startValue: self.currentTargetPoint,
+                                          oscillationFrequency: 2.4,
+                                          halfLife: 0.1,
+                                          animationClosure: { [weak self] (animationValue) in
+                                            self?.movingView.center = animationValue
+            }, completion: nil)
     }
     
     private var currentTargetPoint: CGPoint {
