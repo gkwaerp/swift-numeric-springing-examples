@@ -1,5 +1,5 @@
 # Numeric Springing Examples
-Example usage of the Numeric Spring framework, which can be found [here](https://github.com/LactoseGK/swift-numeric-springing).
+Example usage of the Numeric Springing framework, which can be found [here](https://github.com/LactoseGK/swift-numeric-springing).
 
 
 ## Examples
