@@ -6,9 +6,9 @@ Example usage of the Numeric Spring framework, which can be found [here](https:/
 ### Translate, Rotate & Squash
 Tap the colored views.
 
-The red view at the top moves when tapped.
-The blue view in the middle rotates when tapped.
-The green view at the bottom squashes and unsquashes when tapped.
+* The red view at the top moves when tapped.
+* The blue view in the middle rotates when tapped.
+* The green view at the bottom squashes and unsquashes when tapped.
 
 ### Grid Translation
 Tap the buttons.
