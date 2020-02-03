@@ -41,3 +41,5 @@ The box will rotate when dragged, and animate back to its original rotation when
 Touch anywhere on-screen.
 
 The 2 colored views will rotate to face the touch location. The red view on the left animates, while the blue view on the right snaps directly.
+
+*Known issue: Doesn't properly handle animating past the 0 point.*
