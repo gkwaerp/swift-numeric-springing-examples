@@ -16,6 +16,7 @@ class TableViewController: UIViewController {
         case verticalBar
         case horizontalBar
         case sceneKitRotation
+        case rotationFollow
         
         var viewController: UIViewController {
             switch self {
@@ -31,6 +32,8 @@ class TableViewController: UIViewController {
                 return HorizontalBarViewController()
             case .sceneKitRotation:
                 return SceneKitRotationViewController()
+            case .rotationFollow:
+                return RotationFollowViewController()
             }
         }
         
@@ -48,6 +51,8 @@ class TableViewController: UIViewController {
                 return "Horizontal Bar"
             case .sceneKitRotation:
                 return "SceneKit Rotation"
+            case .rotationFollow:
+                return "Rotation Follow"
             }
         }
     }
