@@ -417,7 +417,7 @@
 			repositoryURL = "https://github.com/LactoseGK/swift-numeric-springing";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.4;
+				minimumVersion = 0.0.5;
 			};
 		};
 		04D5284C23E9FEED007E088B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
