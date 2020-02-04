@@ -147,9 +147,14 @@ class LottieAnimationViewController: UIViewController {
         }
         
         let jumpButton = UIButton(type: .system)
-        jumpButton.setTitle("JUMP!", for: .normal)
-        jumpButton.addTarget(self, action: #selector(self.goToSliceBasedProgress), for: .touchUpInside)
+        jumpButton.setTitle("Jump", for: .normal)
+        jumpButton.addTarget(self, action: #selector(self.jumpToSlicedBasedProgress), for: .touchUpInside)
         mainStackView.addArrangedSubview(jumpButton)
+        
+        let scrubButton = UIButton(type: .system)
+        scrubButton.setTitle("Scrub", for: .normal)
+        scrubButton.addTarget(self, action: #selector(self.scrubToSliceBasedProgress), for: .touchUpInside)
+        mainStackView.addArrangedSubview(scrubButton)
         
         let playButton = UIButton(type: .system)
         playButton.setTitle("Play normally", for: .normal)
@@ -183,10 +188,25 @@ class LottieAnimationViewController: UIViewController {
         self.sliceLabel.text = "\(self.currentSlice) / \(self.numSlices)"
     }
     
-    @objc private func goToSliceBasedProgress() {
-        let progress = CGFloat(self.currentSlice) / CGFloat(self.numSlices)
+    private var sliceProgress: CGFloat {
+        return CGFloat(self.currentSlice) / CGFloat(self.numSlices)
+    }
+    
+    @objc private func scrubToSliceBasedProgress() {
+        if self.animationView.isAnimationPlaying {
+            self.spring.updateCurrentValue(self.animationView.realtimeAnimationProgress)
+        }
+        let progress = self.sliceProgress
         self.spring.updateTargetValue(progress)
-        self.knobHorizontalConstraint.constant = self.getHorizontalConstant(for: progress)
+        self.updateKnobPosition(for: progress)
+    }
+    
+    @objc private func jumpToSlicedBasedProgress() {
+        let progress = self.sliceProgress
+        self.spring.updateCurrentValue(progress)
+        self.spring.stop()
+        self.animationView.currentProgress = progress
+        
     }
     
     @objc private func playButtonPressed() {
@@ -244,6 +264,9 @@ class LottieAnimationViewController: UIViewController {
         progress = min(progress, 1)
         progress = max(progress, 0)
         
+        if self.animationView.isAnimationPlaying {
+            self.spring.updateCurrentValue(self.animationView.realtimeAnimationProgress)
+        }
         self.spring.updateTargetValue(progress)
         self.updateKnobPosition(for: progress)
     }
