@@ -21,6 +21,9 @@
 		04B065BA23E7636100CF7E1B /* HorizontalBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B065B923E7636100CF7E1B /* HorizontalBarViewController.swift */; };
 		04C56B5523E7692A00B816D7 /* SceneKitRotationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C56B5423E7692A00B816D7 /* SceneKitRotationViewController.swift */; };
 		04D5284323E8A406007E088B /* RotationFollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5284223E8A406007E088B /* RotationFollowViewController.swift */; };
+		04D5284B23E9E836007E088B /* LottieAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5284A23E9E836007E088B /* LottieAnimationViewController.swift */; };
+		04D5284E23E9FEED007E088B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 04D5284D23E9FEED007E088B /* Lottie */; };
+		04D5285023E9FF4F007E088B /* radialMeter.json in Resources */ = {isa = PBXBuildFile; fileRef = 04D5284F23E9FF4F007E088B /* radialMeter.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +42,8 @@
 		04B065B923E7636100CF7E1B /* HorizontalBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalBarViewController.swift; sourceTree = "<group>"; };
 		04C56B5423E7692A00B816D7 /* SceneKitRotationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneKitRotationViewController.swift; sourceTree = "<group>"; };
 		04D5284223E8A406007E088B /* RotationFollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationFollowViewController.swift; sourceTree = "<group>"; };
+		04D5284A23E9E836007E088B /* LottieAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieAnimationViewController.swift; sourceTree = "<group>"; };
+		04D5284F23E9FF4F007E088B /* radialMeter.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = radialMeter.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +52,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04B065AE23E62D7600CF7E1B /* NumericSpringing in Frameworks */,
+				04D5284E23E9FEED007E088B /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +78,7 @@
 		04B0659423E62A8E00CF7E1B /* NumericSpringingExamples */ = {
 			isa = PBXGroup;
 			children = (
+				04D5284823E9E815007E088B /* Resources */,
 				04B065AF23E73B9E00CF7E1B /* Examples */,
 				04B0659523E62A8E00CF7E1B /* AppDelegate.swift */,
 				04B0659723E62A8E00CF7E1B /* SceneDelegate.swift */,
@@ -94,8 +101,25 @@
 				04B065B923E7636100CF7E1B /* HorizontalBarViewController.swift */,
 				04C56B5423E7692A00B816D7 /* SceneKitRotationViewController.swift */,
 				04D5284223E8A406007E088B /* RotationFollowViewController.swift */,
+				04D5284A23E9E836007E088B /* LottieAnimationViewController.swift */,
 			);
 			path = Examples;
+			sourceTree = "<group>";
+		};
+		04D5284823E9E815007E088B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				04D5284923E9E81E007E088B /* Lottie */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		04D5284923E9E81E007E088B /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				04D5284F23E9FF4F007E088B /* radialMeter.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -116,6 +140,7 @@
 			name = NumericSpringingExamples;
 			packageProductDependencies = (
 				04B065AD23E62D7600CF7E1B /* NumericSpringing */,
+				04D5284D23E9FEED007E088B /* Lottie */,
 			);
 			productName = numericSpringingExamples;
 			productReference = 04B0659223E62A8E00CF7E1B /* NumericSpringingExamples.app */;
@@ -147,6 +172,7 @@
 			mainGroup = 04B0658923E62A8E00CF7E1B;
 			packageReferences = (
 				04B065AC23E62D7600CF7E1B /* XCRemoteSwiftPackageReference "swift-numeric-springing" */,
+				04D5284C23E9FEED007E088B /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 04B0659323E62A8E00CF7E1B /* Products */;
 			projectDirPath = "";
@@ -164,6 +190,7 @@
 			files = (
 				04B065A223E62A9000CF7E1B /* LaunchScreen.storyboard in Resources */,
 				04B0659F23E62A9000CF7E1B /* Assets.xcassets in Resources */,
+				04D5285023E9FF4F007E088B /* radialMeter.json in Resources */,
 				04B0659D23E62A8E00CF7E1B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -181,6 +208,7 @@
 				04B0659623E62A8E00CF7E1B /* AppDelegate.swift in Sources */,
 				04B065B823E7632800CF7E1B /* VerticalBarViewController.swift in Sources */,
 				04B065B423E7570800CF7E1B /* GridTranslationViewController.swift in Sources */,
+				04D5284B23E9E836007E088B /* LottieAnimationViewController.swift in Sources */,
 				04B065BA23E7636100CF7E1B /* HorizontalBarViewController.swift in Sources */,
 				04C56B5523E7692A00B816D7 /* SceneKitRotationViewController.swift in Sources */,
 				04B0659823E62A8E00CF7E1B /* SceneDelegate.swift in Sources */,
@@ -392,6 +420,14 @@
 				minimumVersion = 0.0.4;
 			};
 		};
+		04D5284C23E9FEED007E088B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.6;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -399,6 +435,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 04B065AC23E62D7600CF7E1B /* XCRemoteSwiftPackageReference "swift-numeric-springing" */;
 			productName = NumericSpringing;
+		};
+		04D5284D23E9FEED007E088B /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04D5284C23E9FEED007E088B /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

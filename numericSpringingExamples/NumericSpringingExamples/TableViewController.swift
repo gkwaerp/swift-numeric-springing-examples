@@ -17,6 +17,7 @@ class TableViewController: UIViewController {
         case horizontalBar
         case sceneKitRotation
         case rotationFollow
+        case lottieAnimation
         
         var viewController: UIViewController {
             switch self {
@@ -34,6 +35,8 @@ class TableViewController: UIViewController {
                 return SceneKitRotationViewController()
             case .rotationFollow:
                 return RotationFollowViewController()
+            case .lottieAnimation:
+                return LottieAnimationViewController()
             }
         }
         
@@ -53,6 +56,8 @@ class TableViewController: UIViewController {
                 return "SceneKit Rotation"
             case .rotationFollow:
                 return "Rotation Follow"
+            case .lottieAnimation:
+                return "Lottie Animation"
             }
         }
     }
