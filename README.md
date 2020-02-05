@@ -49,3 +49,17 @@ Touch anywhere on-screen.
 The 2 colored views will rotate to face the touch location. The red view on the left animates, while the blue view on the right snaps directly.
 
 *Known issue: Doesn't properly handle animating past the 0 point.*
+
+### Lottie Animation
+Press the `Play`button to make the animation play normally.
+
+Press the `+` and `-` buttons to adjust the current slice and the number of slices.
+
+Press the `Jump` button to make the animation move to the progress indicated by the slices, moving without animation.
+
+Press the `Scrub` button to make the animation move to the progress indicated by the slices, moving with a spring animation.
+
+Drag the slider to scrub through the animation with spring-based movement.
+
+#### Lottie animation
+[Radial meter, by Aaron Cecchini-Butler](https://lottiefiles.com/14941-radial-meter)
