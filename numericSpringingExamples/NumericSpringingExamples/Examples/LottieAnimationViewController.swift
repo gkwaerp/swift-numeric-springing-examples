@@ -28,6 +28,7 @@ class LottieAnimationViewController: UIViewController {
         didSet {
             self.numSlices = max(1, self.numSlices)
             self.numSlices = min(10, self.numSlices)
+            self.currentSlice = min(self.currentSlice, self.numSlices)
         }
     }
     
