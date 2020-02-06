@@ -53,11 +53,11 @@ The 2 colored views will rotate to face the touch location. The red view on the 
 ### Lottie Animation
 Press the `Play`button to make the animation play normally.
 
-Press the `+` and `-` buttons to adjust the current slice and the number of slices.
+Press the `+` and `-` buttons to adjust the target progress.
 
-Press the `Jump` button to make the animation move to the progress indicated by the slices, moving without animation.
+Press the `Jump` button to make the animation move to the target progress, moving without animation.
 
-Press the `Scrub` button to make the animation move to the progress indicated by the slices, moving with a spring animation.
+Press the `Scrub` button to make the animation move to the target progress, moving with a spring animation.
 
 Drag the slider to scrub through the animation with spring-based movement.
 
