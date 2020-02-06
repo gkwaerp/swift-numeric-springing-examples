@@ -22,20 +22,14 @@ class LottieAnimationViewController: UIViewController {
     private var animationView = AnimationView(name: "radialMeter")
     private var spring: Spring<CGFloat>!
     
-    private var sliceLabel: UILabel!
+    private var progressTargetLabel: UILabel!
     
-    private var numSlices = 1 {
-        didSet {
-            self.numSlices = max(1, self.numSlices)
-            self.numSlices = min(10, self.numSlices)
-            self.currentSlice = min(self.currentSlice, self.numSlices)
-        }
-    }
+    private let maxProgressSlices = 10
     
-    private var currentSlice = 0 {
+    private var progressTarget = 0 {
         didSet {
-            self.currentSlice = min(self.currentSlice, self.numSlices)
-            self.currentSlice = max(0, self.currentSlice)
+            self.progressTarget = max(0, self.progressTarget)
+            self.progressTarget = min(maxProgressSlices, self.progressTarget)
         }
     }
     
@@ -113,38 +107,29 @@ class LottieAnimationViewController: UIViewController {
     }
     
     private func createSliceControls() {
-        self.sliceLabel = UILabel()
-        self.sliceLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.sliceLabel.textColor = .label
-        self.updateSliceLabel()
+        self.progressTargetLabel = UILabel()
+        self.progressTargetLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.progressTargetLabel.textColor = .label
+        self.updateProgressTargetLabel()
         
         let mainStackView = self.createStackView()
         mainStackView.axis = .vertical
         
         self.view.addSubview(mainStackView)
-        mainStackView.addArrangedSubview(self.sliceLabel)
+        mainStackView.addArrangedSubview(self.progressTargetLabel)
         
-        for stackViewIndex in 0...1 {
-            let stackView = self.createStackView()
-            stackView.axis = .horizontal
-            stackView.distribution = .fill
-            mainStackView.addArrangedSubview(stackView)
-            
-            let label = UILabel()
-            label.textColor = .label
-            label.text = stackViewIndex == 1 ? "Current slice" : "Num slices   "
-            stackView.addArrangedSubview(label)
-            for buttonIndex in 0...1 {
-                let button = UIButton(type: .system)
-                button.setTitle(buttonIndex == 0 ? "-" : "+", for: .normal)
-                button.tag = (buttonIndex == 0) ? -1 : 1
-                if stackViewIndex == 1 {
-                    button.addTarget(self, action: #selector(self.currentSliceButtonPressed(_:)), for: .touchUpInside)
-                } else {
-                    button.addTarget(self, action: #selector(self.numSliceButtonPressed(_:)), for: .touchUpInside)
-                }
-                stackView.addArrangedSubview(button)
-            }
+        let stackView = self.createStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 20
+        mainStackView.addArrangedSubview(stackView)
+        
+        let progressPerTap = Int(1.0 / Double(self.maxProgressSlices) * 100)
+        for buttonIndex in 0...1 {
+            let button = UIButton(type: .system)
+            button.setTitle(buttonIndex == 0 ? "- \(progressPerTap)%" : "+ \(progressPerTap)%", for: .normal)
+            button.tag = (buttonIndex == 0) ? -1 : 1
+            button.addTarget(self, action: #selector(self.adjustProgressButtonTapped), for: .touchUpInside)
+            stackView.addArrangedSubview(button)
         }
         
         let jumpButton = UIButton(type: .system)
@@ -175,22 +160,17 @@ class LottieAnimationViewController: UIViewController {
         return stackView
     }
     
-    @objc private func currentSliceButtonPressed(_ button: UIButton) {
-        self.currentSlice += button.tag
-        self.updateSliceLabel()
+    @objc private func adjustProgressButtonTapped(_ button: UIButton) {
+        self.progressTarget += button.tag
+        self.updateProgressTargetLabel()
     }
     
-    @objc private func numSliceButtonPressed(_ button: UIButton) {
-        self.numSlices += button.tag
-        self.updateSliceLabel()
-    }
-    
-    private func updateSliceLabel() {
-        self.sliceLabel.text = "\(self.currentSlice) / \(self.numSlices)"
+    private func updateProgressTargetLabel() {
+        self.progressTargetLabel.text = "\(Int(self.sliceProgress * 100))%"
     }
     
     private var sliceProgress: CGFloat {
-        return CGFloat(self.currentSlice) / CGFloat(self.numSlices)
+        return CGFloat(self.progressTarget) / CGFloat(self.maxProgressSlices)
     }
     
     @objc private func scrubToSliceBasedProgress() {
