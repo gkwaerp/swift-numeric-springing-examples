@@ -26,6 +26,8 @@ class LottieAnimationViewController: UIViewController {
     
     private let maxProgressSlices = 10
     
+    private var displayLink: CADisplayLink?
+    
     private var progressTarget = 0 {
         didSet {
             self.progressTarget = max(0, self.progressTarget)
@@ -38,6 +40,20 @@ class LottieAnimationViewController: UIViewController {
         
         self.configureUI()
         self.createSpring()
+        self.displayLink = CADisplayLink(target: self, selector: #selector(self.displayLinkUpdate))
+        self.displayLink?.add(to: .current, forMode: .default)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.animationView.pause()
+        self.displayLink?.invalidate()
+        self.displayLink = nil
+    }
+    
+    deinit {
+        self.displayLink?.invalidate()
+        self.displayLink = nil
     }
     
     private func configureUI() {
@@ -173,6 +189,12 @@ class LottieAnimationViewController: UIViewController {
         return CGFloat(self.progressTarget) / CGFloat(self.maxProgressSlices)
     }
     
+    @objc private func displayLinkUpdate() {
+        if self.animationView.isAnimationPlaying {
+            self.updateKnobPosition(for: self.animationView.realtimeAnimationProgress)
+        }
+    }
+    
     @objc private func scrubToSliceBasedProgress() {
         if self.animationView.isAnimationPlaying {
             self.spring.updateCurrentValue(self.animationView.realtimeAnimationProgress)
@@ -187,7 +209,7 @@ class LottieAnimationViewController: UIViewController {
         self.spring.updateCurrentValue(progress)
         self.spring.stop()
         self.animationView.currentProgress = progress
-        
+        self.updateKnobPosition(for: progress)
     }
     
     @objc private func playButtonPressed() {
