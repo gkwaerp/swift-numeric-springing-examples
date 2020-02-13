@@ -15,6 +15,9 @@ class LottieAnimationViewController: UIViewController {
     private var sliderKnobView: UIView!
     private var isDragging = false
     
+    private var increaseButton: UIButton!
+    private var decreaseButton: UIButton!
+    
     private let horizontalPadding: CGFloat = 32
     private let sliderKnobSize: CGFloat = 32
     private var knobHorizontalConstraint: NSLayoutConstraint!
@@ -31,7 +34,9 @@ class LottieAnimationViewController: UIViewController {
     private var progressTarget = 0 {
         didSet {
             self.progressTarget = max(0, self.progressTarget)
-            self.progressTarget = min(maxProgressSlices, self.progressTarget)
+            self.progressTarget = min(self.maxProgressSlices, self.progressTarget)
+            self.decreaseButton.isEnabled = self.progressTarget > 0
+            self.increaseButton.isEnabled = self.progressTarget < self.maxProgressSlices
         }
     }
     
@@ -122,46 +127,69 @@ class LottieAnimationViewController: UIViewController {
                                      self.animationView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 100)])
     }
     
-    private func createSliceControls() {
+    func createAndAddProgressStackView(_ mainStackView: UIStackView) {
+        let progressStackView = self.createStackView()
+        progressStackView.axis = .horizontal
+        progressStackView.distribution = .fill
+        progressStackView.spacing = 16
+        mainStackView.addArrangedSubview(progressStackView)
+        
         self.progressTargetLabel = UILabel()
         self.progressTargetLabel.translatesAutoresizingMaskIntoConstraints = false
         self.progressTargetLabel.textColor = .label
         self.updateProgressTargetLabel()
         
-        let mainStackView = self.createStackView()
-        mainStackView.axis = .vertical
+        progressStackView.addArrangedSubview(self.progressTargetLabel)
         
-        self.view.addSubview(mainStackView)
-        mainStackView.addArrangedSubview(self.progressTargetLabel)
-        
-        let stackView = self.createStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 20
-        mainStackView.addArrangedSubview(stackView)
-        
-        let progressPerTap = Int(1.0 / Double(self.maxProgressSlices) * 100)
         for buttonIndex in 0...1 {
+            let isDecrease = buttonIndex == 0
             let button = UIButton(type: .system)
-            button.setTitle(buttonIndex == 0 ? "- \(progressPerTap)%" : "+ \(progressPerTap)%", for: .normal)
-            button.tag = (buttonIndex == 0) ? -1 : 1
+            let title = isDecrease ? "Decrease" : "Increase"
+            button.setTitle(title, for: .normal)
+            button.tag = isDecrease ? -1 : 1
             button.addTarget(self, action: #selector(self.adjustProgressButtonTapped), for: .touchUpInside)
-            stackView.addArrangedSubview(button)
+            progressStackView.addArrangedSubview(button)
+            
+            if isDecrease {
+                self.decreaseButton = button
+                self.decreaseButton.isEnabled = false
+            } else {
+                self.increaseButton = button
+            }
         }
+    }
+    
+    func createAndAddPlaybackStackView(_ mainStackView: UIStackView) {
+        let playbackStackView = self.createStackView()
+        playbackStackView.axis = .horizontal
+        playbackStackView.spacing = 20
+        mainStackView.addArrangedSubview(playbackStackView)
         
         let jumpButton = UIButton(type: .system)
         jumpButton.setTitle("Jump", for: .normal)
         jumpButton.addTarget(self, action: #selector(self.jumpToSlicedBasedProgress), for: .touchUpInside)
-        mainStackView.addArrangedSubview(jumpButton)
+        playbackStackView.addArrangedSubview(jumpButton)
         
         let scrubButton = UIButton(type: .system)
         scrubButton.setTitle("Scrub", for: .normal)
         scrubButton.addTarget(self, action: #selector(self.scrubToSliceBasedProgress), for: .touchUpInside)
-        mainStackView.addArrangedSubview(scrubButton)
+        playbackStackView.addArrangedSubview(scrubButton)
+    }
+    
+    private func createSliceControls() {
+        let mainStackView = self.createStackView()
+        mainStackView.axis = .vertical
+        
+        self.view.addSubview(mainStackView)
         
         let playButton = UIButton(type: .system)
         playButton.setTitle("Play normally", for: .normal)
         playButton.addTarget(self, action: #selector(self.playButtonPressed), for: .touchUpInside)
         mainStackView.addArrangedSubview(playButton)
+        
+        self.createAndAddProgressStackView(mainStackView)
+        self.createAndAddPlaybackStackView(mainStackView)
+
         
         NSLayoutConstraint.activate([mainStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
                                      mainStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 20),
@@ -182,7 +210,7 @@ class LottieAnimationViewController: UIViewController {
     }
     
     private func updateProgressTargetLabel() {
-        self.progressTargetLabel.text = "\(Int(self.sliceProgress * 100))%"
+        self.progressTargetLabel.text = "Target: \(Int(self.sliceProgress * 100))%"
     }
     
     private var sliceProgress: CGFloat {
@@ -190,9 +218,7 @@ class LottieAnimationViewController: UIViewController {
     }
     
     @objc private func displayLinkUpdate() {
-        if self.animationView.isAnimationPlaying {
-            self.updateKnobPosition(for: self.animationView.realtimeAnimationProgress)
-        }
+        self.updateKnobPosition(for: self.animationView.realtimeAnimationProgress)
     }
     
     @objc private func scrubToSliceBasedProgress() {
@@ -201,7 +227,6 @@ class LottieAnimationViewController: UIViewController {
         }
         let progress = self.sliceProgress
         self.spring.updateTargetValue(progress)
-        self.updateKnobPosition(for: progress)
     }
     
     @objc private func jumpToSlicedBasedProgress() {
@@ -209,7 +234,6 @@ class LottieAnimationViewController: UIViewController {
         self.spring.updateCurrentValue(progress)
         self.spring.stop()
         self.animationView.currentProgress = progress
-        self.updateKnobPosition(for: progress)
     }
     
     @objc private func playButtonPressed() {
@@ -271,6 +295,5 @@ class LottieAnimationViewController: UIViewController {
             self.spring.updateCurrentValue(self.animationView.realtimeAnimationProgress)
         }
         self.spring.updateTargetValue(progress)
-        self.updateKnobPosition(for: progress)
     }
 }
