@@ -21,6 +21,7 @@ class LottieAnimationViewController: UIViewController {
     private let horizontalPadding: CGFloat = 32
     private let sliderKnobSize: CGFloat = 32
     private var knobHorizontalConstraint: NSLayoutConstraint!
+    private var targetHorizontalConstraint: NSLayoutConstraint!
     
     private var animationView = AnimationView(name: "radialMeter")
     private var spring: Spring<CGFloat>!
@@ -31,12 +32,17 @@ class LottieAnimationViewController: UIViewController {
     
     private var displayLink: CADisplayLink?
     
+    private var targetView: UIView!
+    
     private var progressTarget = 0 {
         didSet {
             self.progressTarget = max(0, self.progressTarget)
             self.progressTarget = min(self.maxProgressSlices, self.progressTarget)
             self.decreaseButton.isEnabled = self.progressTarget > 0
             self.increaseButton.isEnabled = self.progressTarget < self.maxProgressSlices
+            
+            let targetPercentage = CGFloat(self.progressTarget) / CGFloat(self.maxProgressSlices)
+            self.targetHorizontalConstraint.constant = self.getHorizontalConstant(for: targetPercentage, viewWidth: self.targetView.frame.width)
         }
     }
     
@@ -101,6 +107,7 @@ class LottieAnimationViewController: UIViewController {
                                      self.sliderBarView.heightAnchor.constraint(equalToConstant: sliderBarHeight),
                                      self.sliderBarView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -verticalPadding)])
         
+        self.createTargetView()
         
         self.sliderKnobView = UIView()
         self.sliderKnobView.translatesAutoresizingMaskIntoConstraints = false
@@ -109,12 +116,29 @@ class LottieAnimationViewController: UIViewController {
         self.view.addSubview(self.sliderKnobView)
         
         self.knobHorizontalConstraint = self.sliderKnobView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,
-                                                                                     constant: self.getHorizontalConstant(for: 0))
+                                                                                     constant: self.getHorizontalConstant(for: 0, viewWidth: self.sliderKnobSize))
         
         NSLayoutConstraint.activate([self.sliderKnobView.centerYAnchor.constraint(equalTo: self.sliderBarView.centerYAnchor),
                                      self.sliderKnobView.heightAnchor.constraint(equalToConstant: self.sliderKnobSize),
                                      self.sliderKnobView.widthAnchor.constraint(equalTo: self.sliderKnobView.heightAnchor, multiplier: 1),
                                      self.knobHorizontalConstraint])
+    }
+    
+    private func createTargetView() {
+        self.targetView = UIView()
+        self.targetView.translatesAutoresizingMaskIntoConstraints = false
+        self.targetView.backgroundColor = .systemBlue
+        self.view.addSubview(self.targetView)
+        
+        let viewWidth: CGFloat = 3
+        let viewHeight: CGFloat = 20
+        self.targetHorizontalConstraint = self.targetView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,
+                                                                                   constant: self.getHorizontalConstant(for: 0, viewWidth: viewWidth))
+        
+        NSLayoutConstraint.activate([self.targetView.bottomAnchor.constraint(equalTo: self.sliderBarView.topAnchor),
+                                     self.targetView.heightAnchor.constraint(equalToConstant: viewHeight),
+                                     self.targetView.widthAnchor.constraint(equalToConstant: viewWidth),
+                                     self.targetHorizontalConstraint])
     }
     
     private func configureLottieView() {
@@ -245,12 +269,12 @@ class LottieAnimationViewController: UIViewController {
         return self.view.frame.width - (2 * self.horizontalPadding)
     }
     
-    private func getHorizontalConstant(for progress: CGFloat) -> CGFloat {
-        return progress * self.sliderBarWidth + self.horizontalPadding - self.sliderKnobSize / 2
+    private func getHorizontalConstant(for progress: CGFloat, viewWidth: CGFloat) -> CGFloat {
+        return progress * self.sliderBarWidth + self.horizontalPadding - viewWidth / 2
     }
     
     private func updateKnobPosition(for progress: CGFloat) {
-        self.knobHorizontalConstraint.constant = self.getHorizontalConstant(for: progress)
+        self.knobHorizontalConstraint.constant = self.getHorizontalConstant(for: progress, viewWidth: self.sliderKnobSize)
     }
     
     private func createSpring() {
