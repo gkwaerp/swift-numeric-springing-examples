@@ -69,15 +69,15 @@ class RotationFollowViewController: UIViewController {
     
     private func handleTouch(_ touch: UITouch) {
         let location = touch.location(in: self.view)
-        let springAngle = self.getAngle(from: location, to: self.springRotateView)
-        let directAngle = self.getAngle(from: location, to: self.directRotateView)
+        let springAngle = self.getAngle(from: self.springRotateView, to: location)
+        let directAngle = self.getAngle(from: self.directRotateView, to: location)
         
         self.spring.updateTargetValue(springAngle)
         self.directRotateView.transform = CGAffineTransform(rotationAngle: directAngle)
     }
     
     // TODO: Has issues when crossing 0 -- doesn't take shortest route.
-    private func getAngle(from position: CGPoint, to view: UIView) -> CGFloat {
+    private func getAngle(from view: UIView, to position: CGPoint) -> CGFloat {
         let offset = CGPoint(x: view.center.x - position.x, y: view.center.y - position.y)
         // Offset by 45 since the corner of the box is pointing towards the location.
         let angleOffset: CGFloat = -45.0 / 180 * CGFloat.pi
