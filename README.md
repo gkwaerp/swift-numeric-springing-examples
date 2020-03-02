@@ -2,7 +2,6 @@
 Example usage of the Numeric Springing framework, which can be found [here](https://github.com/LactoseGK/swift-numeric-springing).
 
 ## Setup
-0. Have access to the Numeric Springing framework.
 1. Clone this repository.
 2. Open the project in Xcode.
 3. Build and run the project.
