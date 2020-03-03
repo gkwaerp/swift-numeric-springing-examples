@@ -12,6 +12,7 @@ import Lottie
 
 class LottieAnimationViewController: UIViewController {
     private var sliderBarView: UIView!
+    private var sliderBarFilledView: UIView!
     private var sliderKnobView: UIView!
     private var isDragging = false
     
@@ -107,6 +108,12 @@ class LottieAnimationViewController: UIViewController {
                                      self.sliderBarView.heightAnchor.constraint(equalToConstant: sliderBarHeight),
                                      self.sliderBarView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -verticalPadding)])
         
+        self.sliderBarFilledView = UIView()
+        self.sliderBarFilledView.backgroundColor = .systemGreen
+        self.sliderBarFilledView.translatesAutoresizingMaskIntoConstraints = false
+        self.sliderBarFilledView.layer.cornerRadius = sliderBarHeight / 2
+        self.view.addSubview(self.sliderBarFilledView)
+        
         self.createTargetView()
         
         self.sliderKnobView = UIView()
@@ -121,7 +128,13 @@ class LottieAnimationViewController: UIViewController {
         NSLayoutConstraint.activate([self.sliderKnobView.centerYAnchor.constraint(equalTo: self.sliderBarView.centerYAnchor),
                                      self.sliderKnobView.heightAnchor.constraint(equalToConstant: self.sliderKnobSize),
                                      self.sliderKnobView.widthAnchor.constraint(equalTo: self.sliderKnobView.heightAnchor, multiplier: 1),
-                                     self.knobHorizontalConstraint])
+                                     self.knobHorizontalConstraint,
+                                     
+                                     self.sliderBarFilledView.leadingAnchor.constraint(equalTo: self.sliderBarView.leadingAnchor),
+                                     self.sliderBarFilledView.heightAnchor.constraint(equalTo: self.sliderBarView.heightAnchor),
+                                     self.sliderBarFilledView.bottomAnchor.constraint(equalTo: self.sliderBarView.bottomAnchor),
+                                     self.sliderBarFilledView.trailingAnchor.constraint(equalTo: self.sliderKnobView.centerXAnchor)
+        ])
     }
     
     private func createTargetView() {
