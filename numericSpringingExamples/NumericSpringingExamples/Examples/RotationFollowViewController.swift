@@ -14,6 +14,18 @@ class RotationFollowViewController: UIViewController {
     private var spring: Spring<CGFloat>!
     private var directRotateView: UIView!
     
+    private lazy var targetView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .systemGreen
+        self.view.addSubview(view)
+        let size: CGFloat = 20
+        NSLayoutConstraint.activate([view.widthAnchor.constraint(equalToConstant: size),
+                                     view.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1)])
+        view.layer.cornerRadius = size / 2
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,6 +81,7 @@ class RotationFollowViewController: UIViewController {
     
     private func handleTouch(_ touch: UITouch) {
         let location = touch.location(in: self.view)
+        self.targetView.center = location
         let springAngle = self.getAngle(from: self.springRotateView, to: location)
         let directAngle = self.getAngle(from: self.directRotateView, to: location)
         
