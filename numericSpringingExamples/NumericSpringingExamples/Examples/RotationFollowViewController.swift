@@ -116,11 +116,12 @@ class RotationFollowViewController: UIViewController {
     private func clampAngle(_ angle: CGFloat) -> CGFloat {
         let pi2 = CGFloat.pi * 2
         var adjustedAngle = angle
-        while adjustedAngle < -CGFloat.pi {
-            adjustedAngle += pi2
-        }
-        while adjustedAngle > CGFloat.pi {
-            adjustedAngle -= pi2
+        if adjustedAngle < -CGFloat.pi {
+            let numRevolutions = Int(abs(adjustedAngle) / pi2) + 1
+            adjustedAngle += CGFloat(numRevolutions) * pi2
+        } else if adjustedAngle > CGFloat.pi {
+            let numRevolutions = Int(adjustedAngle / pi2) + 1
+            adjustedAngle -= CGFloat(numRevolutions) * pi2
         }
         return adjustedAngle
     }
