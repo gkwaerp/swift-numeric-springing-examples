@@ -82,20 +82,46 @@ class RotationFollowViewController: UIViewController {
     private func handleTouch(_ touch: UITouch) {
         let location = touch.location(in: self.view)
         self.targetView.center = location
-        let springAngle = self.getAngle(from: self.springRotateView, to: location)
-        let directAngle = self.getAngle(from: self.directRotateView, to: location)
         
-        self.spring.updateTargetValue(springAngle)
+        // Offset by 1/4 since the corner of the 'box' is pointing towards the touch location.
+        let angleOffset = -CGFloat.pi / 4
+        let springAngle = self.getAngle(from: self.springRotateView, to: location, angleOffset: angleOffset)
+        let directAngle = self.getAngle(from: self.directRotateView, to: location, angleOffset: angleOffset)
+        
+        self.updateSpringAngle(to: springAngle)
         self.directRotateView.transform = CGAffineTransform(rotationAngle: directAngle)
     }
     
-    // TODO: Has issues when crossing 0 -- doesn't take shortest route.
-    private func getAngle(from view: UIView, to position: CGPoint) -> CGFloat {
-        let offset = CGPoint(x: view.center.x - position.x, y: view.center.y - position.y)
-        // Offset by 45 since the corner of the box is pointing towards the location.
-        let angleOffset: CGFloat = -45.0 / 180 * CGFloat.pi
-        let angle = atan2(offset.y, offset.x) + angleOffset
+    private func getAngle(from view: UIView, to position: CGPoint, angleOffset: CGFloat) -> CGFloat {
+        let delta = CGPoint(x: view.center.x - position.x, y: view.center.y - position.y)
+        return self.clampAngle(atan2(delta.y, delta.x) + angleOffset)
+    }
+    
+    private func updateSpringAngle(to originalTargetAngle: CGFloat) {
+        let pi2 = CGFloat.pi * 2
+        let clampedAngle = self.clampAngle(self.spring.currentValue)
+        self.spring.updateCurrentValue(clampedAngle)
         
-        return angle
+        let bestAngle = [0.0, pi2, -pi2].map { (offset) -> (targetAngle: CGFloat, delta: CGFloat) in
+            let targetAngle = originalTargetAngle + offset
+            let delta = abs(clampedAngle - targetAngle)
+            return (targetAngle: targetAngle, delta: delta)
+            }.sorted(by: {$0.delta < $1.delta})
+            .first!
+            .targetAngle
+        
+        self.spring.updateTargetValue(bestAngle)
+    }
+    
+    private func clampAngle(_ angle: CGFloat) -> CGFloat {
+        let pi2 = CGFloat.pi * 2
+        var adjustedAngle = angle
+        while adjustedAngle < -CGFloat.pi {
+            adjustedAngle += pi2
+        }
+        while adjustedAngle > CGFloat.pi {
+            adjustedAngle -= pi2
+        }
+        return adjustedAngle
     }
 }
