@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0415B37D24142F32001F6583 /* CAShapeLayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0415B37C24142F32001F6583 /* CAShapeLayerViewController.swift */; };
 		04B0659623E62A8E00CF7E1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B0659523E62A8E00CF7E1B /* AppDelegate.swift */; };
 		04B0659823E62A8E00CF7E1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B0659723E62A8E00CF7E1B /* SceneDelegate.swift */; };
 		04B0659A23E62A8E00CF7E1B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B0659923E62A8E00CF7E1B /* TableViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0415B37C24142F32001F6583 /* CAShapeLayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAShapeLayerViewController.swift; sourceTree = "<group>"; };
 		04B0659223E62A8E00CF7E1B /* NumericSpringingExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NumericSpringingExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B0659523E62A8E00CF7E1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04B0659723E62A8E00CF7E1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				04C56B5423E7692A00B816D7 /* SceneKitRotationViewController.swift */,
 				04D5284223E8A406007E088B /* RotationFollowViewController.swift */,
 				04D5284A23E9E836007E088B /* LottieAnimationViewController.swift */,
+				0415B37C24142F32001F6583 /* CAShapeLayerViewController.swift */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				04C56B5523E7692A00B816D7 /* SceneKitRotationViewController.swift in Sources */,
 				04B0659823E62A8E00CF7E1B /* SceneDelegate.swift in Sources */,
 				04D5284323E8A406007E088B /* RotationFollowViewController.swift in Sources */,
+				0415B37D24142F32001F6583 /* CAShapeLayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
